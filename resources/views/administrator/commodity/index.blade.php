@@ -40,8 +40,8 @@
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $commodity->name }}</td>
-                <td>{!! DNS1D::getBarcodeHTML("$commodity->id", 'C128') !!}
-                  <span class="d-block text-muted">{{ $commodity->id }}</span>
+                <td>{!! DNS1D::getBarcodeHTML("$commodity->id", 'C128', 5,50) !!}
+                  <!-- <span class="d-block text-muted">{{ $commodity->id }}</span> -->
                 </td>
                 <td>
                   <div class="btn-group gap-1">

@@ -95,13 +95,13 @@
       <footer>
         <div class="footer clearfix mb-0 text-muted">
           <div class="float-start">
-            <p>2021 &copy; Mazer | Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p>
+            <p>2025 &copy; D4 Telkom B 23</p>
           </div>
           <div class="float-end">
             <p>
-              Crafted with
-              <span class="text-danger"><i class="bi bi-heart"></i></span> by
-              <a href="https://saugi.me">Saugi</a>
+              Supported By
+              <span class="text-danger"><i class="bi bi-asterisk"></i></span>
+              <a href="https://github.com/FryzID/peminjaman">FryzID</a>
             </p>
           </div>
         </div>
