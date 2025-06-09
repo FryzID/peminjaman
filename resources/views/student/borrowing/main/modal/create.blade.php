@@ -12,7 +12,7 @@
             <div class="col-12">
               <div class="mb-3">
                 <label for="commodity_id" class="form-label">Komoditas</label>
-                <select class="form-select @error('commodity_id', 'store') is-invalid @enderror" name="commodity_id"
+                <select class="form-select select2 @error('commodity_id', 'store') is-invalid @enderror" name="commodity_id"
                   id="commodity_id" required>
                   <option value="" selected>Pilih..</option>
                   @foreach ($availableCommodities as $commodity)
@@ -62,3 +62,19 @@
     </div>
   </div>
 </div>
+
+@push('script')
+<!-- Select2 CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#commodity_id').select2({
+      dropdownParent: $('#addBorrowingModal'),
+      width: '100%',
+      placeholder: 'Pilih..',
+      allowClear: true
+    });
+  });
+</script>
+@endpush

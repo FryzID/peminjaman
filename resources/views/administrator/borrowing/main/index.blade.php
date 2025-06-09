@@ -30,12 +30,10 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="student_id" class="form-label">Mahasiswa:</label>
-                <select name="student_id" id="student_id" class="form-select">
+                <select name="student_id" id="student_id" class="form-select select2">
                   <option value="">Pilih mahasiswa..</option>
                   @foreach ($students as $student)
-                  <option value="{{ $student->id }}" @selected(request('student_id')==$student->id)>{{
-                    $student->identification_number }} - {{ $student->name }}
-                  </option>
+                  <option value="{{ $student->id }}" @selected(request('student_id')==$student->id)>{{ $student->identification_number }} - {{ $student->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -66,12 +64,10 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="commodity_id" class="form-label">Komoditas:</label>
-                <select name="commodity_id" id="commodity_id" class="form-select">
+                <select name="commodity_id" id="commodity_id" class="form-select select2">
                   <option value="">Pilih komoditas..</option>
                   @foreach ($commodities as $commodity)
-                  <option value="{{ $commodity->id }}" @selected(request('commodity_id')==$commodity->id)>{{
-                    $commodity->name }}
-                  </option>
+                  <option value="{{ $commodity->id }}" @selected(request('commodity_id')==$commodity->id)>{{ $commodity->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -161,5 +157,21 @@
 @endpush
 
 @push('script')
-@include('administrator.borrowing.script')
+<!-- Select2 CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#student_id').select2({
+      width: '100%',
+      placeholder: 'Pilih mahasiswa..',
+      allowClear: true
+    });
+    $('#commodity_id').select2({
+      width: '100%',
+      placeholder: 'Pilih komoditas..',
+      allowClear: true
+    });
+  });
+</script>
 @endpush

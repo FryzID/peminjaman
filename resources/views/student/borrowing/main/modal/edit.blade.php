@@ -65,12 +65,11 @@
                 <div class="col-md-12 col-lg-12">
                   <div class="mb-3">
                     <label for="commodity_id" class="form-label">Nama Komoditas</label>
-                    <select class="form-select" name="commodity_id" id="commodity_id">
+                    <select class="form-select select2" name="commodity_id" id="commodity_id">
                       <option selected>Pilih..</option>
                       @foreach ($availableCommodities as $commodity)
                       <option value="{{ $commodity->id }}">{{ $commodity->name }}</option>
                       @endforeach
-
                       @foreach ($unavailableCommodities as $commodity)
                       <option value="{{ $commodity->id }}" disabled>{{ $commodity->name }} - Sedang dipinjam</option>
                       @endforeach
@@ -119,3 +118,20 @@
     </div>
   </div>
 </div>
+
+
+@push('script')
+<!-- Select2 CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#commodity_id').select2({
+      dropdownParent: $('#editBorrowingModal'),
+      width: '100%',
+      placeholder: 'Pilih..',
+      allowClear: true
+    });
+  });
+</script>
+@endpush
