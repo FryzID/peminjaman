@@ -8,7 +8,9 @@ use App\Http\Requests\Administrator\UpdateCommodityRequest;
 use App\Http\Requests\ImportExcelRequest;
 use App\Models\Commodity;
 use App\Services\ImportService;
-use Milon\Barcode\Facades\DNS1D;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Milon\Barcode\Facades\DNS1DFacade;
+// use Milon\Barcode\Facades\DNS1D;
 
 class CommodityController extends Controller
 {
@@ -73,6 +75,25 @@ class CommodityController extends Controller
     /**
      * Generate and display a barcode for a commodity.
      */
+    // public function barcode($id)
+    // {
+    //     $commodity = Commodity::find($id);
+
+    //     if (!$commodity) {
+    //         abort(404);
+    //     }
+
+    //     // Pad the ID to 8 digits for consistency
+    //     $barcodeData = str_pad($commodity->id, 8, '0', STR_PAD_LEFT);
+    //     $barcodeType = 'C128'; // Use C128 for compatibility with DNS1D
+    //     $barcode = DNS1DFacade::getBarcodeSVG($barcodeData, $barcodeType, 2, 60, 'black', false);
+
+    //     return view('administrator.commodity.barcode', [
+    //         'barcode' => $barcode,
+    //         'commodity' => $commodity,
+    //     ]);
+    // }
+
     public function barcode($id)
     {
         $commodity = Commodity::find($id);
@@ -81,14 +102,17 @@ class CommodityController extends Controller
             abort(404);
         }
 
-        // Pad the ID to 8 digits for consistency
         $barcodeData = str_pad($commodity->id, 8, '0', STR_PAD_LEFT);
-        $barcodeType = 'C128'; // Use C128 for compatibility with DNS1D
-        $barcode = DNS1D::getBarcodeSVG($barcodeData, $barcodeType, 2, 60, 'black', false);
+        $barcodeType = 'C128';
 
-        return view('administrator.commodity.barcode', [
-            'barcode' => $barcode,
+        $barcodePng = DNS1DFacade::getBarcodePNG($barcodeData, $barcodeType, 2, 60);
+        $barcodeImage = 'data:image/png;base64,' . $barcodePng;
+
+        $pdf = Pdf::loadView('administrator.commodity.barcode_pdf', [
             'commodity' => $commodity,
+            'barcodeImage' => $barcodeImage,
         ]);
+
+        return $pdf->stream('barcode_commodity_' . $commodity->id . '.pdf');
     }
 }
