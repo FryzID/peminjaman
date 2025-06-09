@@ -31,6 +31,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Komoditas</th>
+                <th scope="col">Barcode</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -39,6 +40,9 @@
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $commodity->name }}</td>
+                <td>{!! DNS1D::getBarcodeHTML("$commodity->id", 'C128') !!}
+                  <span class="d-block text-muted">{{ $commodity->id }}</span>
+                </td>
                 <td>
                   <div class="btn-group gap-1">
                     <a href="{{ route('administrators.commodities.barcode', $commodity->id) }}" class="btn btn-sm btn-info">
