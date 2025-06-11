@@ -12,14 +12,16 @@
             <table class="table datatable">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">ID</th>
                   <th scope="col">Nama Komoditas</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($availableCommodities as $commodity)
                 <tr>
-                  <th>{{ $loop->iteration }}</th>
+                  <!-- <th>{{ $loop->iteration }}</th> -->
+                  <th>{{ $commodity->id }}</th>
                   <td>{{ $commodity->name }}</td>
                 </tr>
                 @endforeach
