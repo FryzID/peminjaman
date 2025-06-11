@@ -11,9 +11,9 @@
           <div class="row">
             <div class="col-12">
               <div class="mb-3">
-                <label for="commodity_id" class="form-label">Komoditas</label>
+                <label for="commodity_id_create" class="form-label">Komoditas</label>
                 <select class="form-select select2 @error('commodity_id', 'store') is-invalid @enderror" name="commodity_id"
-                  id="commodity_id" required>
+                  id="commodity_id_create" required>
                   <option value="" selected>Pilih..</option>
                   @foreach ($availableCommodities as $commodity)
                   <option value="{{ $commodity->id }}" {{ old('commodity_id')===(string)$commodity->id ?
@@ -68,28 +68,25 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-  $(document).ready(function() {
-    // Custom matcher for commodity_id select2
-    function commodityIdMatcher(params, data) {
-      if ($.trim(params.term) === '') {
-        return data;
-      }
-      if (typeof data.id === 'undefined' || data.id === '') {
-        return null;
-      }
-      // Only match if input is exactly 8 characters
-      if (params.term.length !== 8) {
-        return null;
-      }
-      // Pad the commodity id with leading zeros to 8 chars
-      var paddedId = data.id.toString().padStart(8, '0');
-      // Check if the last character matches the value
-      if (params.term === paddedId) {
-        return data;
-      }
+  function commodityIdMatcher(params, data) {
+    if ($.trim(params.term) === '') {
+      return data;
+    }
+    if (typeof data.id === 'undefined' || data.id === '') {
       return null;
     }
-    $('#commodity_id').select2({
+    var term = params.term.toLowerCase();
+    var id = data.id.toString().toLowerCase();
+    var paddedId = id.padStart(8, '0');
+    var text = (data.text || '').toLowerCase();
+    // Match if search term is part of the ID, padded ID, or name
+    if (id.indexOf(term) !== -1 || paddedId.indexOf(term) !== -1 || text.indexOf(term) !== -1) {
+      return data;
+    }
+    return null;
+  }
+  $('#addBorrowingModal').on('shown.bs.modal', function () {
+    $('#commodity_id_create').select2({
       dropdownParent: $('#addBorrowingModal'),
       width: '100%',
       placeholder: 'Pilih..',
