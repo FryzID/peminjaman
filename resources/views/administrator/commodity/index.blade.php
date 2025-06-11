@@ -40,7 +40,7 @@
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $commodity->name }}</td>
-                <td>{!! DNS1D::getBarcodeHTML("$commodity->id", 'C128', 5,50) !!}
+                <td>{!! DNS2D::getBarcodeSVG("$commodity->id", 'QRCODE' ) !!}
                   <!-- <span class="d-block text-muted">{{ $commodity->id }}</span> -->
                 </td>
                 <td>

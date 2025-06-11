@@ -162,6 +162,26 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function() {
+    // Custom matcher for commodity_id select2
+    function commodityIdMatcher(params, data) {
+      if ($.trim(params.term) === '') {
+        return data;
+      }
+      if (typeof data.id === 'undefined' || data.id === '') {
+        return null;
+      }
+      // Only match if input is exactly 8 characters
+      if (params.term.length !== 8) {
+        return null;
+      }
+      // Pad the commodity id with leading zeros to 8 chars
+      var paddedId = data.id.toString().padStart(8, '0');
+      // Check if the last character matches the value
+      if (params.term === paddedId) {
+        return data;
+      }
+      return null;
+    }
     $('#student_id').select2({
       width: '100%',
       placeholder: 'Pilih mahasiswa..',
@@ -170,7 +190,8 @@
     $('#commodity_id').select2({
       width: '100%',
       placeholder: 'Pilih komoditas..',
-      allowClear: true
+      allowClear: true,
+      matcher: commodityIdMatcher
     });
   });
 </script>

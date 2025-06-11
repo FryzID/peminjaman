@@ -10,7 +10,7 @@ use App\Models\Commodity;
 use App\Services\ImportService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Milon\Barcode\Facades\DNS1DFacade;
-// use Milon\Barcode\Facades\DNS1D;
+use Milon\Barcode\Facades\DNS2DFacade;
 
 class CommodityController extends Controller
 {
@@ -103,9 +103,9 @@ class CommodityController extends Controller
         }
 
         $barcodeData = str_pad($commodity->id, 8, '0', STR_PAD_LEFT);
-        $barcodeType = 'C128';
+        $barcodeType = 'QRCODE';
 
-        $barcodePng = DNS1DFacade::getBarcodePNG($barcodeData, $barcodeType, 2, 60);
+        $barcodePng = DNS2DFacade::getBarcodePNG($barcodeData, $barcodeType);
         $barcodeImage = 'data:image/png;base64,' . $barcodePng;
 
         $pdf = Pdf::loadView('administrator.commodity.barcode_pdf', [
