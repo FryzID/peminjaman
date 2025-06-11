@@ -12,7 +12,7 @@
         <h4 class="card-title">@yield('title')</h4>
       </div>
       <div class="card-body">
-        <div class="alert alert-warning" role="alert">
+        <!-- <div class="alert alert-warning" role="alert">
           <i class="bi bi-exclamation-circle"></i>
           Setiap data peminjaman dari mahasiswa petugas wajib melakukan validasi dengan menekan tombol
           validasi
@@ -23,7 +23,7 @@
           <div class="fw-bold pt-3">Diharapkan kembali petugas sebelum melakukan validasi melakukan cek terhadap
             komoditas yang sudah
             dipinjam apakah benar sudah dikembalikan.</div>
-        </div>
+        </div> -->
 
         <x-filter-menu>
           <div class="row">
@@ -51,7 +51,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <div class="mb-3">
                 <label for="validate" class="form-label">Status validasi:</label>
                 <select name="validate" id="validate" class="form-select">
@@ -60,8 +60,8 @@
                   <option value="0" @selected(request('validate')==='0' )>Belum divalidasi</option>
                 </select>
               </div>
-            </div>
-            <div class="col-md-6">
+            </div> -->
+            <div class="col-md-12">
               <div class="mb-3">
                 <label for="commodity_id" class="form-label">Komoditas:</label>
                 <select name="commodity_id" id="commodity_id" class="form-select select2">
@@ -87,7 +87,7 @@
                 <th scope="col">Tanggal</th>
                 <th scope="col">Jam Pinjam</th>
                 <th scope="col">Jam Kembali</th>
-                <th scope="col">Petugas</th>
+                <!-- <th scope="col">Petugas</th> -->
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -120,7 +120,7 @@
                   </span>
                   @endif
                 </td>
-                <td>
+                <!-- <td>
                   @if($borrowing->officer_id !== NULL)
                   <span class="badge text-bg-success" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="Sudah divalidasi oleh {{ $borrowing->officer->name }}">
@@ -132,7 +132,7 @@
                     <i class="bi bi-exclamation-circle"></i>
                   </span>
                   @endif
-                </td>
+                </td> -->
                 <td>
                   <div class="btn-group gap-1">
                     <button type="button" class="btn btn-sm btn-success showBorrowingButton" data-bs-toggle="modal"

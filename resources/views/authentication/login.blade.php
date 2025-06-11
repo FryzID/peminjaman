@@ -40,7 +40,7 @@
           <select class="form-select" name="type" required>
             <option value="">Login Sebagai</option>
             <option value="administrator">Administrator</option>
-            <option value="officer">Petugas</option>
+            <!-- <option value="officer">Petugas</option> -->
             <option value="student">Mahasiswa</option>
           </select>
         </div>
@@ -48,7 +48,7 @@
           Masuk
         </button>
       </form>
-      <center><br><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center>
+      <!-- <center><br><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center> -->
     </div>
   </div>
   <div class="col-lg-7 d-none d-lg-block">
