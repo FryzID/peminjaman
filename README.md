@@ -98,15 +98,6 @@ Database yang Anda impor sudah berisi data pengguna admin. Gunakan kredensial be
 - **Membuat QR Code:** Di menu manajemen barang, setiap item memiliki opsi untuk **"Generate QR Code"**. Ini akan membuat gambar QR yang unik untuk barang tersebut
 - **Penggunaan:** Cetak dan tempelkan QR code pada barang fisik. Saat melakukan transaksi, pindai kode ini dengan perangkat scanner untuk menemukan item di sistem secara instan tanpa perlu pencarian manual
 
-## 🤝 Kontribusi
-
-Kontribusi selalu diterima! Jika Anda ingin mengembangkan aplikasi ini, silakan fork repository ini dan buat *pull request* dengan perubahan atau penambahan fitur yang Anda buat.
-
-## 📄 Lisensi
-
-[Tambahkan informasi lisensi di sini]
-
-## 📞 Kontak
 
 [Tambahkan informasi kontak atau link ke profil GitHub Anda]
 
